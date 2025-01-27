@@ -1,0 +1,16 @@
+{
+  "name": "first-api-call",
+  "version": "1.0.0",
+  "description": "This is my first test api call",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Arpit anand",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "upper-case": "^2.0.2"
+  }
+}
