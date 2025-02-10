@@ -6,9 +6,13 @@ const cors = require("cors");
 
 const router = require("./routes/index.routes");
 
+const { connectMyDb } = require('./db/connect');
+
 const app = express();
 
 const fs = require('fs');
+
+connectMyDb(); // Call the function
 
 app.use(cors());  // Middleware 
 

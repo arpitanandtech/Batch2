@@ -1,7 +1,13 @@
 const TODO = require("../../data/TODO");
+const { client } = require("../../db/connect");
 
 const getTasks = function (req, res, next) {
-  res.json(TODO);
+
+  const db = client.db();
+  db.collection("task").find().toArray().then(respoonse => {
+    res.json(respoonse);
+  })
+
 }
 
 module.exports = getTasks;
