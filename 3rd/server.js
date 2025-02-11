@@ -6,13 +6,15 @@ const cors = require("cors");
 
 const router = require("./routes/index.routes");
 
-const { connectMyDb } = require('./db/connect');
+// const { connectMyDb } = require('./db/connect');
 
 const app = express();
 
 const fs = require('fs');
 
-connectMyDb(); // Call the function
+const mongoose = require('mongoose');
+
+// connectMyDb(); // Call the function
 
 app.use(cors());  // Middleware 
 
@@ -71,5 +73,7 @@ app.get("/my-api-4", function (req, res, next) {
 
 
 app.listen(8090, function () {
-  console.log("My app is working at PORT-", 8090);
+  mongoose.connect("mongodb+srv://arpit:arpit123@cluster0.oxfe5.mongodb.net/Tasks?retryWrites=true&w=majority").then(_response => {
+    console.log("Database conneted and my app is working at PORT-", 8090);
+  })
 });
