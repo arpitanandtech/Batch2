@@ -1,14 +1,35 @@
-const TODO = require("../../data/TODO");
+const Task = require("../../models/Task");
 
 const updateTask = function (req, res, next) {
-  const data = req.body.title;
-  const title = req.params;
+  const data = req.body.title; //  Body
+  const title = req.params.title;
 
-  const index = TODO.findIndex(function (item) {
-    return item.title === title.title
+  Task.updateMany({
+    title: title,
+  }, {
+    $set: {
+      title: data
+    }
+  }).then(response => {
+    res.json(response);
+  }).catch(err => {
+    // Handle error;
+    console.log(err);
   });
-  TODO[index].title = data;
-  res.json(TODO);
+
+  // Task.updateOne({
+  //   title: title,
+  // }, {
+  //   $set: {
+  //     title: data
+  //   }
+  // }).then(response => {
+  //   res.json(response);
+  // }).catch(err => {
+  //   // Handle error;
+  //   console.log(err);
+  // });
+
 }
 
 module.exports = updateTask

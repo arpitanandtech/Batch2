@@ -1,13 +1,24 @@
-const TODO = require("../../data/TODO");
+const Task = require("../../models/Task");
 
 const deleteTask = function (req, res, next) {
-  const title = req.params;
-  const index = TODO.findIndex(function (item) {
-    return item.title === title.title
-  });
-  // Splice with index 
-  TODO.splice(index, 1);
-  res.json(TODO);
+  const title = req.params.title;
+  // const {title} = req.params;
+
+  // Task.deleteOne({
+  //   title: title
+  // }).then(resp => {
+  //   res.json(resp);
+  // }).catch(err => {
+  //   console.log(err);
+  // });
+
+  Task.deleteMany({
+    title: title
+  }).then(resp => {
+    res.json(resp);
+  }).catch(err => {
+    console.log(err);
+  })
 }
 
 module.exports = deleteTask;

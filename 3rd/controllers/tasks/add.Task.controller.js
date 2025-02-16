@@ -6,7 +6,10 @@ const Task = require("../../models/Task");
 
 function addTask(req, res, next) {
   const data = req.body.title;
-  Task.create({ title: data }).then(response => {
+
+  const id = req.id;
+
+  Task.create({ title: data, user: id }).then(response => {
     res.json(response);
   });
 }
